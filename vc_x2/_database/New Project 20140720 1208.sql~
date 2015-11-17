@@ -1,0 +1,671 @@
+-- MySQL Administrator dump 1.4
+--
+-- ------------------------------------------------------
+-- Server version	5.6.20
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+--
+-- Create schema prog_vi
+--
+
+CREATE DATABASE IF NOT EXISTS prog_vi;
+USE prog_vi;
+
+--
+-- Temporary table structure for view `saca_guarda`
+--
+DROP TABLE IF EXISTS `saca_guarda`;
+DROP VIEW IF EXISTS `saca_guarda`;
+CREATE TABLE `saca_guarda` (
+  `guarda` varchar(183),
+  `cedula` int(11),
+  `departamento_id` int(11),
+  `municipio_id` int(11)
+);
+
+--
+-- Definition of table `cliente`
+--
+
+DROP TABLE IF EXISTS `cliente`;
+CREATE TABLE `cliente` (
+  `cliente_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `cliente_nit` varchar(45) NOT NULL,
+  `cliente_nombre` varchar(45) NOT NULL,
+  `cliente_direccion` varchar(45) NOT NULL,
+  `cliente_telefono` varchar(45) NOT NULL,
+  `cliente_email` varchar(200) NOT NULL,
+  `cliente_web` text NOT NULL,
+  `contacto_nombre` varchar(100) NOT NULL,
+  `contacto_telefono` varchar(30) NOT NULL,
+  `contacto_email` varchar(200) NOT NULL,
+  `cliente_activo` int(1) DEFAULT NULL,
+  PRIMARY KEY (`cliente_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `cliente`
+--
+
+/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
+INSERT INTO `cliente` (`cliente_id`,`cliente_nit`,`cliente_nombre`,`cliente_direccion`,`cliente_telefono`,`cliente_email`,`cliente_web`,`contacto_nombre`,`contacto_telefono`,`contacto_email`,`cliente_activo`) VALUES 
+ (1,'28','COLTABACO','asdf','asdf','ctabaco@gmail.com','asdf','asdf','asdf','asdf',1),
+ (2,'123456','Las palomas','calle1','12345','laspàlomas@laspalomas.com','laspalomas.com','Jailton Yanes','301284','yanesj@laspalomas.comasdf',1),
+ (3,'1234-89','Exito','Calle 9','123456','exito@exito.com','www.exito.com','joel rivera','123456','jrivera@exito.com',1),
+ (4,'2830-17','OLIMPICA','CALLE 107 # 20-40','36245877','gerencia@olimpica.com','grupoolimipica.com','Ivan Ulloque','3013205080','dirseguridad@olimpica.com',1),
+ (5,'123456','Serrano Gomez','Dir','1234','sdfgs@dfgh.com','ser.sdfg.com','sdfg','3454','sdfg@gmail.com',1),
+ (6,'152346-8','Arroz Polonuevo','calle15','123456','arrroz@polonuevo.com','www.polonuevo.com','Danna','126489','dannag@gmail.com',1);
+/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
+
+
+--
+-- Definition of table `departamento`
+--
+
+DROP TABLE IF EXISTS `departamento`;
+CREATE TABLE `departamento` (
+  `departamento_id` int(11) NOT NULL AUTO_INCREMENT,
+  `departamento_nombre` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`departamento_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `departamento`
+--
+
+/*!40000 ALTER TABLE `departamento` DISABLE KEYS */;
+INSERT INTO `departamento` (`departamento_id`,`departamento_nombre`) VALUES 
+ (2,'BOLIVAR'),
+ (3,'GUAJIRA'),
+ (4,'ATLANTICO');
+/*!40000 ALTER TABLE `departamento` ENABLE KEYS */;
+
+
+--
+-- Definition of table `empleado`
+--
+
+DROP TABLE IF EXISTS `empleado`;
+CREATE TABLE `empleado` (
+  `empleado_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `apellido1` varchar(45) DEFAULT NULL,
+  `apellido2` varchar(45) DEFAULT NULL,
+  `nombre1` varchar(45) DEFAULT NULL,
+  `nombre2` varchar(45) DEFAULT NULL,
+  `cedula` int(11) DEFAULT NULL,
+  `direccion` varchar(200) DEFAULT NULL,
+  `telefono_fijo` varchar(30) DEFAULT NULL,
+  `celular` varchar(30) DEFAULT NULL,
+  `email` varchar(300) DEFAULT NULL,
+  `cargo` varchar(10) DEFAULT NULL,
+  `tipo_sangre` varchar(30) DEFAULT NULL,
+  `departamento_id` int(11) DEFAULT NULL,
+  `municipio_id` int(11) DEFAULT NULL,
+  `barrio` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`empleado_id`),
+  UNIQUE KEY `unique_empleado` (`cedula`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `empleado`
+--
+
+/*!40000 ALTER TABLE `empleado` DISABLE KEYS */;
+INSERT INTO `empleado` (`empleado_id`,`apellido1`,`apellido2`,`nombre1`,`nombre2`,`cedula`,`direccion`,`telefono_fijo`,`celular`,`email`,`cargo`,`tipo_sangre`,`departamento_id`,`municipio_id`,`barrio`) VALUES 
+ (0,'NO','TIENE','',NULL,0,NULL,NULL,NULL,NULL,'vigilante',NULL,NULL,NULL,NULL),
+ (10,'Gamarra','Fonseca','Jairo','Alberto',12345,'calle5','36254','123456','jgj@gmail.com','vigilante','b+',1,2,'carmocha'),
+ (12,'Gutierrez','Basile','Jose','Francisco',1234565,'calle4','123456','123456','jy@gmail.com','operador','AB+',1,10,'las callenas'),
+ (13,'Dean','De Jesus','Iduart','Alberto',8090,'dir','tfijo','t_cel','e-mail@email.com','cargo','vali',2,6,'bar'),
+ (15,'Reatiga','Noguera','Cintia','Milena',2468,'Calle12','56849','32541','cintyia@gmail.com','Vigilante','B+',1,10,'Americas'),
+ (16,'Valencia','Antequera','Beatriz','Elena',584671,'calle 70','123456','24563','bpolicia@hotmail.com','vigilante','a-',3,8,'Las flores'),
+ (17,'Romero','Rosendo','Jairo','Alberto',5897,'calle 80','123456','547682','rosendor@videlca.com.co','Vigilante','b+',2,6,'las mercedes'),
+ (18,'Dominguez','Moscote','Rafael','Arturo',123456,'calle 11','123456','326589','amoscote@gmail.com','vigulante','B+',1,2,'la macarena'),
+ (19,'Redondo','Angulo','JosÃ©','Maria',1234587,'dir','1231','32498172','rod@videlca','Vigilante','B+',4,11,'camelias'),
+ (20,'Fontalvo','Ezquea','Victor','Julio',1234,'dir2','43234','454354','Victor@hotmail.com','vigilante','O+',4,11,'Americas'),
+ (21,'Gonzalez','Garcia','Andres','Jose',111111111,'dir emp 1','tel emp 1','cel emp 1','emp1@1.com','vigilante1','A+',4,11,'barrio emp 1'),
+ (22,'Guerrero','Rodriguez','Ricardo','Alberto',222222222,'dir emp 2','tel emp 2','cel emp 2','emp@2.com','vigilante2','A -',4,11,'barrio emp 2'),
+ (26,'Perez','Albor','Julio','Modesto',33333333,'dir emp 3','234234','134134124','eenen@sfg.com','vigilante3','O+',4,11,'barrio emp 3'),
+ (27,'Yanes','Morales','Enrique','Armando',44444444,'dir emp 4','233523523','134142124','adfaf@sdf.com','vigilante4','O -',4,11,'BARRIO EMP 4'),
+ (28,'Tarazona','Ruiz','Luz','Marina',2147483647,'Dir emp 5','2342344','232352523','sdgsdg@sfghsfh@.com','vigilante5','A+',4,11,'Olaya');
+/*!40000 ALTER TABLE `empleado` ENABLE KEYS */;
+
+
+--
+-- Definition of table `festivo`
+--
+
+DROP TABLE IF EXISTS `festivo`;
+CREATE TABLE `festivo` (
+  `fecha_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha_festiva` date DEFAULT NULL,
+  PRIMARY KEY (`fecha_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `festivo`
+--
+
+/*!40000 ALTER TABLE `festivo` DISABLE KEYS */;
+INSERT INTO `festivo` (`fecha_id`,`fecha_festiva`) VALUES 
+ (9,'2015-03-03'),
+ (10,'2015-03-19');
+/*!40000 ALTER TABLE `festivo` ENABLE KEYS */;
+
+
+--
+-- Definition of table `horario`
+--
+
+DROP TABLE IF EXISTS `horario`;
+CREATE TABLE `horario` (
+  `horario_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `hora_inicio_lunes` time NOT NULL,
+  `hora_fin_lunes` time NOT NULL,
+  `turno_id` int(10) unsigned NOT NULL,
+  `hora_inicio_martes` time NOT NULL,
+  `hora_fin_martes` time NOT NULL,
+  `hora_inicio_miercoles` time NOT NULL,
+  `hora_fin_miercoles` time NOT NULL,
+  `hora_inicio_jueves` time NOT NULL,
+  `hora_fin_jueves` time NOT NULL,
+  `hoa_inicio_viernes` time NOT NULL,
+  `hora_fin_viernes` time NOT NULL,
+  `hora_inicio_sabado` time NOT NULL,
+  `hora_fin_sabado` time NOT NULL,
+  `hora_inicio_domingo` time NOT NULL,
+  `hora_fin_domingo` time NOT NULL,
+  `hora_inicio_festivos` time NOT NULL,
+  `hora_fin_festivos` time NOT NULL,
+  PRIMARY KEY (`horario_id`),
+  KEY `FK_horario_1` (`turno_id`),
+  CONSTRAINT `FK_horario_1` FOREIGN KEY (`turno_id`) REFERENCES `turno` (`turno_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `horario`
+--
+
+/*!40000 ALTER TABLE `horario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `horario` ENABLE KEYS */;
+
+
+--
+-- Definition of table `id_prog`
+--
+
+DROP TABLE IF EXISTS `id_prog`;
+CREATE TABLE `id_prog` (
+  `prog_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha_ini` date DEFAULT NULL,
+  `fecha_fin` date DEFAULT NULL,
+  `guarda_id` varchar(20) DEFAULT NULL,
+  `tipo_prog` int(1) DEFAULT NULL COMMENT '1 fijo, 2 relevo',
+  `programacion_nombre` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`prog_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=154 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `id_prog`
+--
+
+/*!40000 ALTER TABLE `id_prog` DISABLE KEYS */;
+INSERT INTO `id_prog` (`prog_id`,`fecha_ini`,`fecha_fin`,`guarda_id`,`tipo_prog`,`programacion_nombre`) VALUES 
+ (111,'2014-12-01','2014-12-31','2014-12-16 06:05:25',1,'Diciembre'),
+ (112,'2014-12-01','2014-12-31','2014-12-23 10:10:21',1,'Exito_bolivar'),
+ (113,'2015-02-02','2015-02-27','2015-02-02 04:14:58',1,'t1'),
+ (114,'2015-02-02','2015-02-27','2015-02-02 04:32:06',1,'Olimpica Calle 72 Feb'),
+ (115,'2015-02-03','2015-02-18','2015-02-02 06:58:48',2,'wetrq'),
+ (116,'2015-02-03','2015-02-28','2015-02-02 10:16:41',1,'Prog. Serrano gomez'),
+ (117,'2015-02-05','2015-02-19','2015-02-05 05:38:05',1,'Sabado'),
+ (118,'2015-02-01','2015-02-28','2015-02-19 05:32:52',1,'Turno olimpica_feb'),
+ (119,'2015-02-01','2015-02-28','2015-02-19 05:34:11',1,'Olimpica Marzo'),
+ (120,'2015-02-01','2015-02-28','2015-02-23 02:03:56',1,'cor_sem_prueba'),
+ (121,'2015-02-01','2015-02-28','2015-02-23 02:05:44',1,'aiusf'),
+ (122,'2015-02-01','2015-02-28','2015-02-23 02:08:38',1,'srÃ±ogih'),
+ (123,'0000-00-00','0000-00-00','2015-02-23 03:22:58',0,''),
+ (124,'2015-02-01','2015-02-28','2015-02-23 03:24:07',1,'aeÃ±riuf'),
+ (125,'2015-02-01','2015-02-28','2015-02-23 03:25:52',1,'w34'),
+ (126,'2015-02-01','2015-02-28','2015-02-23 03:27:56',1,'aÃ±eiruh'),
+ (127,'2015-02-01','2015-02-28','2015-02-23 03:32:47',1,'ierua'),
+ (128,'2015-02-01','2015-02-28','2015-02-23 03:36:38',1,'idufv'),
+ (129,'2015-02-01','2015-02-28','2015-02-23 03:41:06',1,'lzudfl'),
+ (130,'2015-02-01','2015-02-28','2015-02-23 03:46:14',1,'Ã±ekjjr'),
+ (131,'2015-02-01','2015-02-28','2015-02-23 03:52:34',1,'lajdfsd'),
+ (132,'2015-02-01','2015-02-28','2015-02-23 03:56:42',1,'Ã±aiduf'),
+ (133,'2015-02-01','2015-02-28','2015-02-23 04:02:18',1,'Ã±sirue+t'),
+ (134,'2015-02-01','2015-02-28','2015-02-23 04:05:24',1,'Ã±aireuhÃ±'),
+ (135,'2015-02-01','2015-02-28','2015-02-23 04:09:48',1,'adÃ±fijkÃ±k'),
+ (136,'2015-02-01','2015-02-28','2015-02-23 04:20:22',1,'adljf.'),
+ (137,'2015-02-01','2015-02-28','2015-02-23 04:32:21',1,'Ã±iuui'),
+ (138,'2015-02-01','2015-02-28','2015-02-23 04:46:03',1,'Ã±ijbij'),
+ (139,'2015-02-02','2015-02-28','2015-02-23 04:50:14',1,',jh'),
+ (140,'2015-02-02','2015-02-28','2015-02-23 05:02:51',1,'dfgas'),
+ (141,'2015-02-02','2015-02-28','2015-02-23 05:04:30',1,'stysr'),
+ (142,'2015-02-02','2015-02-28','2015-02-23 05:06:00',1,'lugvlu'),
+ (143,'2015-02-02','2015-02-28','2015-02-23 05:07:51',1,'stgd'),
+ (144,'2015-02-02','2015-02-28','2015-02-23 05:11:08',1,'jvhduj'),
+ (145,'2015-02-01','2015-02-28','2015-02-23 05:12:29',1,'luvu'),
+ (146,'2015-02-01','2015-02-28','2015-02-24 06:46:00',1,'Emisora'),
+ (147,'2015-02-01','2015-02-28','2015-02-24 06:48:36',1,'Semana emisora'),
+ (148,'2015-03-01','2015-03-31','2015-03-07 11:20:00',1,'arwe'),
+ (149,'2015-03-01','2015-03-31','2015-03-07 11:31:30',1,'arsd'),
+ (150,'2015-03-01','2015-03-31','2015-03-07 11:33:00',1,'qargadfg'),
+ (151,'2015-04-01','2015-04-30','2015-03-07 11:34:38',1,'dfgqwe'),
+ (152,'2015-03-01','2015-03-31','2015-03-07 11:37:31',1,'asdfSD'),
+ (153,'2015-03-01','2015-03-31','2015-03-09 10:30:37',1,'Prog marzo');
+/*!40000 ALTER TABLE `id_prog` ENABLE KEYS */;
+
+
+--
+-- Definition of table `municipio`
+--
+
+DROP TABLE IF EXISTS `municipio`;
+CREATE TABLE `municipio` (
+  `municipio_id` int(11) NOT NULL AUTO_INCREMENT,
+  `departamento_id` int(11) DEFAULT NULL,
+  `municipio_nombre` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`municipio_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `municipio`
+--
+
+/*!40000 ALTER TABLE `municipio` DISABLE KEYS */;
+INSERT INTO `municipio` (`municipio_id`,`departamento_id`,`municipio_nombre`) VALUES 
+ (1,4,'GALAPA'),
+ (2,4,'BARRANQUILLA'),
+ (3,4,'SABANALARGA'),
+ (4,2,'TIERRA BOMBA4'),
+ (5,2,'BOCAGRANDE'),
+ (6,2,'PUNTACANOA'),
+ (7,4,'BARANOA'),
+ (8,3,'MAICAO'),
+ (9,1,'SABANAGRANDE'),
+ (10,1,'ABEJORRAL');
+/*!40000 ALTER TABLE `municipio` ENABLE KEYS */;
+
+
+--
+-- Definition of table `novedad`
+--
+
+DROP TABLE IF EXISTS `novedad`;
+CREATE TABLE `novedad` (
+  `novedad_id` int(11) NOT NULL AUTO_INCREMENT,
+  `codigo` varchar(10) DEFAULT NULL,
+  `tipo` varchar(1) DEFAULT NULL,
+  `reemplazo` varchar(1) DEFAULT NULL,
+  `nombre` varbinary(45) DEFAULT NULL,
+  PRIMARY KEY (`novedad_id`),
+  UNIQUE KEY `UNIQUE` (`codigo`),
+  UNIQUE KEY `UNIQUE2` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `novedad`
+--
+
+/*!40000 ALTER TABLE `novedad` DISABLE KEYS */;
+INSERT INTO `novedad` (`novedad_id`,`codigo`,`tipo`,`reemplazo`,`nombre`) VALUES 
+ (1,'2030','2','1',0x696E7465726E61),
+ (5,'2031','1','1',0x696E7465726E6132),
+ (6,'L1498','3','1',0x4C4559204D41524941),
+ (7,'F-8','1','1',0x46414C544120494E4A55535449464943414441),
+ (8,'SN01','3','2',0x53494E204E4F5645444144);
+/*!40000 ALTER TABLE `novedad` ENABLE KEYS */;
+
+
+--
+-- Definition of table `prog_guar`
+--
+
+DROP TABLE IF EXISTS `prog_guar`;
+CREATE TABLE `prog_guar` (
+  `id_prog` int(11) NOT NULL,
+  `guarda_id` int(11) NOT NULL,
+  `fecha_ini` date DEFAULT NULL,
+  `fecha_fin` date DEFAULT NULL,
+  PRIMARY KEY (`id_prog`,`guarda_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `prog_guar`
+--
+
+/*!40000 ALTER TABLE `prog_guar` DISABLE KEYS */;
+/*!40000 ALTER TABLE `prog_guar` ENABLE KEYS */;
+
+
+--
+-- Definition of table `programacion`
+--
+
+DROP TABLE IF EXISTS `programacion`;
+CREATE TABLE `programacion` (
+  `prog_id` int(11) NOT NULL AUTO_INCREMENT,
+  `cliente_id` int(11) DEFAULT NULL,
+  `departamento_id` int(11) DEFAULT NULL,
+  `municipio_id` int(11) DEFAULT NULL,
+  `sucursal_id` int(11) DEFAULT NULL,
+  `guarda_id` varchar(20) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `turno_id` int(11) DEFAULT NULL,
+  `novedad_id` int(11) DEFAULT NULL,
+  `tipo_turno` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  `remplazo_guarda_id` int(11) DEFAULT NULL,
+  `tipo_programacion` varchar(11) COLLATE latin1_spanish_ci DEFAULT NULL COMMENT '1, para programacion fija, 2 para relevo.',
+  `dia_sem` varchar(10) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `id_prog` int(11) DEFAULT NULL COMMENT 'para saber a que programacion pertence la asignacion',
+  PRIMARY KEY (`prog_id`),
+  UNIQUE KEY `u` (`cliente_id`,`departamento_id`,`municipio_id`,`sucursal_id`,`guarda_id`,`turno_id`,`novedad_id`,`tipo_turno`,`fecha`,`remplazo_guarda_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=246 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Dumping data for table `programacion`
+--
+
+/*!40000 ALTER TABLE `programacion` DISABLE KEYS */;
+INSERT INTO `programacion` (`prog_id`,`cliente_id`,`departamento_id`,`municipio_id`,`sucursal_id`,`guarda_id`,`turno_id`,`novedad_id`,`tipo_turno`,`fecha`,`remplazo_guarda_id`,`tipo_programacion`,`dia_sem`,`id_prog`) VALUES 
+ (215,6,3,8,20,'584671',24,8,'D','2015-05-01',0,NULL,NULL,NULL),
+ (216,6,3,8,20,'584671',24,8,'D','2015-05-02',0,NULL,NULL,NULL),
+ (217,6,3,8,20,'584671',24,8,'D','2015-05-03',0,NULL,NULL,NULL),
+ (218,6,3,8,20,'584671',24,8,'D','2015-05-04',0,NULL,NULL,NULL),
+ (219,6,3,8,20,'584671',24,8,'X','2015-05-05',0,NULL,NULL,NULL),
+ (220,6,3,8,20,'584671',24,8,'D','2015-05-06',0,NULL,NULL,NULL),
+ (221,6,3,8,20,'584671',24,8,'D','2015-05-07',0,NULL,NULL,NULL),
+ (222,6,3,8,20,'584671',24,8,'D','2015-05-08',0,NULL,NULL,NULL),
+ (223,6,3,8,20,'584671',24,8,'D','2015-05-09',0,NULL,NULL,NULL),
+ (224,6,3,8,20,'584671',24,8,'X','2015-05-10',0,NULL,NULL,NULL),
+ (225,6,3,8,20,'584671',24,8,'D','2015-05-11',0,NULL,NULL,NULL),
+ (226,6,3,8,20,'584671',24,8,'D','2015-05-12',0,NULL,NULL,NULL),
+ (227,6,3,8,20,'584671',24,8,'D','2015-05-13',0,NULL,NULL,NULL),
+ (228,6,3,8,20,'584671',24,8,'D','2015-05-14',0,NULL,NULL,NULL),
+ (229,6,3,8,20,'584671',24,8,'X','2015-05-15',0,NULL,NULL,NULL),
+ (230,6,3,8,20,'584671',24,8,'D','2015-05-16',0,NULL,NULL,NULL),
+ (231,6,3,8,20,'584671',24,8,'D','2015-05-17',0,NULL,NULL,NULL),
+ (232,6,3,8,20,'584671',24,8,'D','2015-05-18',0,NULL,NULL,NULL),
+ (233,6,3,8,20,'584671',24,8,'D','2015-05-19',0,NULL,NULL,NULL),
+ (234,6,3,8,20,'584671',24,8,'X','2015-05-20',0,NULL,NULL,NULL),
+ (235,6,3,8,20,'584671',24,8,'D','2015-05-21',0,NULL,NULL,NULL),
+ (236,6,3,8,20,'584671',24,8,'D','2015-05-22',0,NULL,NULL,NULL),
+ (237,6,3,8,20,'584671',24,8,'D','2015-05-23',0,NULL,NULL,NULL),
+ (238,6,3,8,20,'584671',24,8,'D','2015-05-24',0,NULL,NULL,NULL),
+ (239,6,3,8,20,'584671',24,8,'X','2015-05-25',0,NULL,NULL,NULL),
+ (240,6,3,8,20,'584671',24,8,'D','2015-05-26',0,NULL,NULL,NULL),
+ (241,6,3,8,20,'584671',24,8,'D','2015-05-27',0,NULL,NULL,NULL),
+ (242,6,3,8,20,'584671',24,8,'D','2015-05-28',0,NULL,NULL,NULL),
+ (243,6,3,8,20,'584671',24,8,'D','2015-05-29',0,NULL,NULL,NULL),
+ (244,6,3,8,20,'584671',24,8,'X','2015-05-30',0,NULL,NULL,NULL),
+ (245,6,3,8,20,'584671',24,8,'D','2015-05-31',0,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `programacion` ENABLE KEYS */;
+
+
+--
+-- Definition of table `puesto`
+--
+
+DROP TABLE IF EXISTS `puesto`;
+CREATE TABLE `puesto` (
+  `puesto_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `puesto_nombre` varchar(45) NOT NULL,
+  `sucursal_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`puesto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `puesto`
+--
+
+/*!40000 ALTER TABLE `puesto` DISABLE KEYS */;
+/*!40000 ALTER TABLE `puesto` ENABLE KEYS */;
+
+
+--
+-- Definition of table `puesto_servicio`
+--
+
+DROP TABLE IF EXISTS `puesto_servicio`;
+CREATE TABLE `puesto_servicio` (
+  `puesto_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `servicio_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`puesto_id`,`servicio_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `puesto_servicio`
+--
+
+/*!40000 ALTER TABLE `puesto_servicio` DISABLE KEYS */;
+/*!40000 ALTER TABLE `puesto_servicio` ENABLE KEYS */;
+
+
+--
+-- Definition of table `servicio`
+--
+
+DROP TABLE IF EXISTS `servicio`;
+CREATE TABLE `servicio` (
+  `servicio_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `empleado_id` int(10) unsigned NOT NULL,
+  `turno_id` int(10) unsigned NOT NULL,
+  `fecha_registro` datetime NOT NULL,
+  `dia_de_turno` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`servicio_id`),
+  KEY `FK_servicio_1` (`empleado_id`),
+  KEY `FK_servicio_2` (`turno_id`),
+  CONSTRAINT `FK_servicio_1` FOREIGN KEY (`empleado_id`) REFERENCES `empleado` (`empleado_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_servicio_2` FOREIGN KEY (`turno_id`) REFERENCES `turno` (`turno_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `servicio`
+--
+
+/*!40000 ALTER TABLE `servicio` DISABLE KEYS */;
+/*!40000 ALTER TABLE `servicio` ENABLE KEYS */;
+
+
+--
+-- Definition of table `sucursal`
+--
+
+DROP TABLE IF EXISTS `sucursal`;
+CREATE TABLE `sucursal` (
+  `sucursal_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `sucursal_nombre` varchar(45) NOT NULL,
+  `cliente_id` int(10) unsigned NOT NULL,
+  `sucursal_direccion` varchar(45) NOT NULL,
+  `sucursal_contacto_telefono` varchar(45) NOT NULL,
+  `sucursal_contacto_nombre` varchar(45) NOT NULL,
+  `sucursal_contacto_email` varchar(45) NOT NULL,
+  `departamento_id` int(11) DEFAULT NULL,
+  `municipio_id` int(11) DEFAULT NULL,
+  `sucursal_telefono` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`sucursal_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `sucursal`
+--
+
+/*!40000 ALTER TABLE `sucursal` DISABLE KEYS */;
+INSERT INTO `sucursal` (`sucursal_id`,`sucursal_nombre`,`cliente_id`,`sucursal_direccion`,`sucursal_contacto_telefono`,`sucursal_contacto_nombre`,`sucursal_contacto_email`,`departamento_id`,`municipio_id`,`sucursal_telefono`) VALUES 
+ (2,'EXITO SABANALGRANDE',3,'CALLE 7','123451','JAIRO PARADA','jparada@exito.com.co',1,9,'2345'),
+ (3,'EXITO 77',3,'CALLE 77','1234','Miller Ramos','mramos@exito.com',1,2,'21345'),
+ (4,'Abejorral1',3,'calle2','456749','Jurleydis','j1@gmail.com',1,10,'12345'),
+ (5,'Playon',1,'calle7','12345','jailton yanes','yanesj@gmail.com',2,6,'1234'),
+ (6,'Playa Grande',3,'Calle 7','123456','Jailton Yanes','jailtonyanes@gmail.com',2,6,'123456'),
+ (7,'Principal',1,'calle 70','12348','Hector Ulloque','hulloque@gmail.com',3,8,'32658'),
+ (8,'Calle 72',4,'Calle 72 # 48 esq','320584715','Hector Ulloque','hulloque@olimpica.com',4,2,'123456'),
+ (9,'CORDIALIDAD',4,'CALLE1','8973','Jailton Rodriguez','jrod@olimpica.com',4,2,'2341'),
+ (10,'Principal',1,'dir1','12345','John Porto','Jporto@coltabaco.co',4,11,'12345'),
+ (11,'PUESTO1',2,'DIR1','TEL1','CONT1','email@1.com',4,11,'TEL1'),
+ (12,'PUESTO2',2,'DIR2','TEL2','CONT2','EMAIL@2.COM',4,11,'TEL2'),
+ (13,'PUESTO3',2,'DIR3','TEL3','CONT3','EMAIL@3.COM',4,11,'TEL3'),
+ (14,'PUESTO4',2,'DIR4','TEL4','CONT4','EMAIL@4.COM',4,11,'TEL4'),
+ (15,'PUESTO5',1,'DIR5','TEL5','CONT5','EMAIL@5.COM',4,11,'TEL5'),
+ (16,'PUESTO5',2,'DIR5','TEL5','CONT5','EMAIL@5.COM',4,11,'TEL5'),
+ (17,'Palomas1',2,'calle1','1234','contacto1','email1@email.com',4,2,'tel1'),
+ (18,'Principal',5,'sdfg','24','sdf','sdfg@gmail.com',4,2,'43543'),
+ (19,'Calle 15',1,'calle15','12345','joe','elvalesita@hotmail.com',4,2,'1234'),
+ (20,'Principal',6,'calle 2','123456','asdfsd','asdfs@asdfs.com',3,8,'1234156');
+/*!40000 ALTER TABLE `sucursal` ENABLE KEYS */;
+
+
+--
+-- Definition of table `turno`
+--
+
+DROP TABLE IF EXISTS `turno`;
+CREATE TABLE `turno` (
+  `turno_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `turno_nombre` varchar(45) NOT NULL,
+  `turno_descripcion` varchar(200) NOT NULL,
+  `dias_laborales` int(10) unsigned NOT NULL,
+  `dias_descanso` int(10) unsigned NOT NULL,
+  `dtd` int(11) DEFAULT NULL,
+  `dtn` int(11) DEFAULT NULL,
+  `inicio_turno` int(11) DEFAULT NULL,
+  `des_lunes` int(11) DEFAULT NULL,
+  `des_martes` int(11) DEFAULT NULL,
+  `des_miercoles` int(11) DEFAULT NULL,
+  `des_jueves` int(11) DEFAULT NULL,
+  `des_viernes` int(11) DEFAULT NULL,
+  `des_sabado` int(11) DEFAULT NULL,
+  `des_domingo` int(11) DEFAULT NULL,
+  `des_festivos` int(11) DEFAULT NULL,
+  `hora_turno` time DEFAULT NULL,
+  `hora_fin_turno` time DEFAULT NULL,
+  `cliente_id` int(11) DEFAULT NULL,
+  `departamento_id` int(11) DEFAULT NULL,
+  `municipio_id` int(11) DEFAULT NULL,
+  `sucursal_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`turno_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `turno`
+--
+
+/*!40000 ALTER TABLE `turno` DISABLE KEYS */;
+INSERT INTO `turno` (`turno_id`,`turno_nombre`,`turno_descripcion`,`dias_laborales`,`dias_descanso`,`dtd`,`dtn`,`inicio_turno`,`des_lunes`,`des_martes`,`des_miercoles`,`des_jueves`,`des_viernes`,`des_sabado`,`des_domingo`,`des_festivos`,`hora_turno`,`hora_fin_turno`,`cliente_id`,`departamento_id`,`municipio_id`,`sucursal_id`) VALUES 
+ (24,'Caracho','De lunes a viernes',4,1,4,0,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `turno` ENABLE KEYS */;
+
+
+--
+-- Definition of table `turno_relevo`
+--
+
+DROP TABLE IF EXISTS `turno_relevo`;
+CREATE TABLE `turno_relevo` (
+  `relevo_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` date DEFAULT NULL,
+  `cliente_id` int(11) DEFAULT NULL,
+  `sucursal_id` int(11) DEFAULT NULL,
+  `guarda_id` varchar(20) DEFAULT NULL,
+  `id_prog` int(11) DEFAULT NULL,
+  PRIMARY KEY (`relevo_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `turno_relevo`
+--
+
+/*!40000 ALTER TABLE `turno_relevo` DISABLE KEYS */;
+INSERT INTO `turno_relevo` (`relevo_id`,`fecha`,`cliente_id`,`sucursal_id`,`guarda_id`,`id_prog`) VALUES 
+ (1,'2015-03-01',4,8,'1234587',NULL),
+ (2,'2015-03-03',4,8,'1234',NULL),
+ (3,'2015-03-07',4,8,'1234',NULL),
+ (4,'2015-03-13',4,8,'44444444',NULL),
+ (5,'2015-03-01',4,8,'111111111',NULL),
+ (6,'2015-03-03',4,8,'222222222',NULL),
+ (7,'2015-03-01',4,8,'',NULL),
+ (8,'2015-03-03',4,8,'',NULL),
+ (9,'2015-03-07',4,8,'',NULL),
+ (10,'2015-03-13',4,8,'',NULL),
+ (11,'2015-03-19',4,8,'',NULL),
+ (12,'2015-03-25',4,8,'',NULL),
+ (13,'2015-03-31',4,8,'',NULL);
+/*!40000 ALTER TABLE `turno_relevo` ENABLE KEYS */;
+
+
+--
+-- Definition of table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE `usuario` (
+  `usuario_id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario_nombre` varchar(45) DEFAULT NULL,
+  `usuario_apellido` varchar(45) DEFAULT NULL,
+  `usuario_password` varchar(45) DEFAULT NULL,
+  `usuario_nick` varchar(45) DEFAULT NULL,
+  `usuario_tipo` int(3) DEFAULT NULL,
+  `usuario_active` int(3) DEFAULT NULL,
+  PRIMARY KEY (`usuario_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `usuario`
+--
+
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` (`usuario_id`,`usuario_nombre`,`usuario_apellido`,`usuario_password`,`usuario_nick`,`usuario_tipo`,`usuario_active`) VALUES 
+ (1,'Jailton','Yanes','sjn316','yanesj',1,1),
+ (2,'Hector','Ulloque','carepayaso','hulloque',1,1),
+ (3,'Licy','rodriguez','123456','petola',1,1),
+ (5,'Claudia','Diaz','1234','cdiaz',2,1),
+ (6,'Jose','Pedroza','1p','tp',1,1);
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+
+
+--
+-- Definition of procedure `insert_prog`
+--
+
+DROP PROCEDURE IF EXISTS `insert_prog`;
+
+DELIMITER $$
+
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */ $$
+CREATE DEFINER=`root`@`%` PROCEDURE `insert_prog`(cliente_id integer, departamento_id integer, municipio_id integer, sucursal_id integer,guarda_id integer, turno_id integer,novedad_id integer,tipo_turno varchar(1),fecha datetime)
+BEGIN
+    
+   insert into programacion  (cliente_id,departamento_id,municipio_id,sucursal_id,guarda_id,turno_id,novedad_id,tipo_turno,fecha)
+   values  (cliente_id,departamento_id,municipio_id,sucursal_id,guarda_id,turno_id,novedad_id,tipo_turno,fecha);
+    
+    END $$
+/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
+
+DELIMITER ;
+
+--
+-- Definition of view `saca_guarda`
+--
+
+DROP TABLE IF EXISTS `saca_guarda`;
+DROP VIEW IF EXISTS `saca_guarda`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `saca_guarda` AS select concat(`empleado`.`apellido1`,' ',`empleado`.`apellido2`,' ',`empleado`.`nombre1`,' ',`empleado`.`nombre2`) AS `guarda`,`empleado`.`cedula` AS `cedula`,`empleado`.`departamento_id` AS `departamento_id`,`empleado`.`municipio_id` AS `municipio_id` from `empleado` order by `empleado`.`apellido1`,`empleado`.`apellido2`,`empleado`.`nombre1`,`empleado`.`nombre2`;
+
+
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
