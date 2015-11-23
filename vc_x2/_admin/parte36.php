@@ -1,1 +1,0 @@
-<h2><?php echo 'Gracias por su tiempo.' ?> <a href="http://200.89.109.243/app/adm.php" style="text-decoration:none;cursor:pointer; font-size:22px" >&nbsp;&nbsp; Salir</a></h2>
