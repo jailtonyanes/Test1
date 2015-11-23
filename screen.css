@@ -1,0 +1,776 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+
+
+body
+
+{
+
+	background-image:url(_images/body.gif);
+
+	background-repeat:repeat;
+
+	color: #09F;
+
+}
+
+body img
+
+{
+
+ border:none;
+
+
+}
+
+
+
+#back
+
+{
+
+ background-image: url("_images/n1.gif");
+
+    height: 80px;
+
+    margin-top: -95px;
+
+	 padding-left: 24px;
+
+  
+
+}
+
+
+
+#container{
+
+ width:1300px;
+
+ margin:15px auto;
+
+ border:5px solid #054B81;
+
+ background-color:#FFF;
+
+}
+
+#container h3
+{
+ padding-left:15px;
+}
+
+#container2{
+
+ width:350px;
+
+ margin:150px auto;
+
+ border:5px solid #054B81;
+
+ background-color:#FFF;
+
+}
+
+
+
+#container2 p{
+
+  text-align:center;
+
+  color:#000;
+
+  font-weight:bold;
+
+ 
+
+}
+
+#back h2	{
+
+  
+
+  color:#FFF;
+
+  font-weight:bold;
+
+  padding-top:24px;
+
+}
+
+
+
+
+
+#detalle_cliente,#detalle_contenedor{
+
+    margin-bottom: 20px;
+
+    margin-left: 50px;
+
+    margin-top: -55px;
+
+    width: 1100px; 
+
+}
+
+
+
+#container h2,#container p
+
+{
+
+ color:#333;
+
+ 
+
+}
+
+#container h2
+
+{
+
+ margin-top:25px;
+
+ text-align:center;
+
+ 
+
+}
+
+#container ul li a
+
+{
+
+ color:#FFF;
+
+ text-decoration:none;
+
+ font-weight:bold;
+
+ font-size:14px;
+
+}
+
+
+
+#container #main_menu
+
+{
+
+  background-image:url(_images/n1.gif);
+
+  background-repeat:repeat;
+
+  height:122px;
+
+  border-bottom:3px solid #f0f0f0;
+
+}
+
+#container #main_menu img
+
+{
+
+   margin-left: 1062px;
+
+    margin-top: -3px;
+
+}
+
+
+
+#container #main_menu #options
+
+{
+
+    background-color: #A0BBD8;
+
+    height: 31px;
+
+    margin-top: 27px;
+
+	
+
+}
+
+
+
+#container ul.menu 
+
+    {
+
+	   list-style-type: none;
+
+       padding-top: 7px;
+
+	 
+
+	 
+
+	}
+
+#container ul.menu li a:hover
+
+    {
+
+	  color:#72809F;
+
+	 
+
+	 
+
+	}	
+
+	
+
+#container ul.menu > li 
+
+{
+
+ display:inline;
+
+ padding:25px;
+
+}	
+
+	
+
+#container ul.menu ul 
+
+    {
+
+	 display:none;
+
+	 list-style-type:none;
+
+	 
+
+	}
+
+	
+
+#container ul.menu> li > ul /* Solo para los ul debajo de los li de primer nivel. */
+
+{
+
+   display: none;
+
+    left: -16px;
+
+    list-style: none outside none;
+
+    position: absolute;
+
+    top: 45px;
+
+}
+
+#container ul.menu li
+
+{
+
+   position:relative; /* Las coordenadas de los ul inferiores serán relativas al <li> que los contiene */
+
+   width:177px;
+
+  
+
+}
+
+
+
+
+
+#container ul.menu ul
+
+{
+
+   position:absolute; /* Esta posición es relativa al <li> que contiene a este <ul> */
+
+   left:30px; /* Para que no monte sobre el <li> */
+
+   top:-1px;
+
+   display:none;
+
+   list-style:none;
+
+}
+
+
+
+#container ul.menu li:hover > ul
+
+{
+
+ display:block;
+
+ background-color:#A0BBD8;
+}
+#container #content
+
+{
+  border: 1px solid #243142;
+
+    margin-bottom: 20px;
+
+    margin-left: 350px;
+
+    margin-top: 76px;
+
+    width: 535px;
+
+}
+#container #content2
+{
+    border: 1px solid #243142;
+    margin-bottom: 20px;
+    margin-left: 265px;
+    margin-top: 76px;
+    width: 700px;
+}
+
+#container #content2 p
+{
+ padding-right:44px;
+}
+
+#container #content h2,#container #content2 h2
+
+{
+
+    margin-top: 7px;
+
+    text-align: center;
+
+}
+
+
+
+#container #content p,#container #datos p,#container #content2
+
+{
+
+ text-align:right;
+
+ 
+
+}
+
+#datos{
+
+    background-color: #FFFFFF;
+
+    border: 2px solid #243142;
+
+    margin: 20px auto;
+
+    width: 574px;
+
+}
+
+#folder
+
+{
+
+   height: 70px;
+
+    margin-left: 271px;
+
+    margin-top: 5px;
+
+    width: 70px;
+
+}
+
+
+
+form#edit_cli,form#edit_impor,form#edit_mer,form#edit_mer,form#edit_cal,form#edit_cli2{
+
+	background-image:url(_images/general.background.white.50p.gif);
+
+	display:none;
+
+	height:300%;
+
+	left:0;
+
+	position:absolute;
+
+	top:0;
+
+	width:100%;
+
+}
+
+form#view_cli{
+
+ margin-bottom:20px;
+
+}
+
+form#view_cli h2{
+
+ margin-top:33px;
+
+}
+
+#welcome
+
+{
+
+  margin-left: 635px;
+
+    margin-top: -41px;
+
+    width: 450px;
+
+}
+
+#welcome p{
+
+ color:#FFF;
+
+ font-weight:bold;
+
+ text-transform:capitalize;
+
+}
+
+#welcome p a{
+
+ color:#A0BBD8;
+
+
+
+}
+
+#abo_pag
+{
+ width:800px;
+}
+#abo_pag p
+{
+ text-align:right;
+ margin-right:450px;
+}
+
+
+#botonera
+
+{
+      margin-left: 530px;
+    margin-top: -13px;
+    width: 240px;
+}
+#botonera3
+
+{
+    margin: 5px auto;
+    width: 241px;
+}
+
+#botonera_e
+
+{
+    margin: 5px auto;
+    width: 79px;
+}
+#botonera2
+
+{
+    margin: 5px auto;
+    width: 176px;
+}
+#botonera3
+
+{
+    margin: 5px auto;
+    width: 80px;
+}
+#container h1
+
+{
+
+ color: #FFFFFF;
+
+    font-family: Arial,"Times New Roman",Times,serif;
+
+    margin-left: 77px;
+
+    margin-top: -104px;
+
+    width: 417px;
+
+}
+
+
+
+#container form table
+
+{
+
+ 
+
+  margin: 12px auto;
+
+ 
+
+}
+
+#container form table th,#container form table td
+
+{
+
+ width:auto;
+
+}
+
+
+
+#container table{
+
+ background-color:#CDCDCD;
+
+  color: #3D3D3D;
+
+  border-left: 1px solid #DAD9C7;
+
+  border-top: 1px solid #DAD9C7;
+  margin:5px auto;
+
+  
+
+ 
+
+}
+
+#container  table th{
+
+  background-color:#E6EEEE;
+
+   padding:3px;
+
+   
+
+
+
+}
+
+
+
+#container  table td{
+
+  background-color:#FFF;
+
+    padding:3px;
+
+  
+
+
+
+}
+
+#pagi
+{
+    margin-left: 500px;
+    margin-top: 34px;
+    width: 141px;
+}
+#pagi2
+{
+    margin-bottom: 4px;
+    margin-left: 846px;
+    margin-top: -32px;
+    width: 171px;
+}
+
+#pos_cli
+{
+    margin: 10px auto;
+    width: 542px;
+}
+
+#pos_cli2
+{
+    margin: 10px auto;
+    width: 184px;
+}
+
+#report_control
+
+{
+
+    margin: 7px auto;
+
+    width: 16px;
+
+}
+
+
+
+
+.ancho
+
+{
+
+  width:141px;
+
+   margin-right:140px;
+
+}
+
+.ancho_filtro
+{
+  width:80px;
+
+}
+
+.anchot
+
+{
+
+  width:141px;
+
+  
+
+}
+.ancho_der
+
+{
+
+  width:141px;
+
+   margin-right:140px;
+   text-align: right;
+
+}
+
+.ancho_es
+{
+ margin-right: 132px;
+    width: 207px;
+}
+
+.ancho2
+
+{
+
+    margin-right: 160px;
+
+    width: 185px;
+
+}
+.ancho3
+{
+   margin-right: 59px;
+    width: 360px;
+}
+
+
+
+.guarda
+
+{
+
+ width:90px;
+
+ margin-right:205px;
+
+}
+
+
+.margen_der{
+
+ border-right: 1px solid #DAD9C7;
+
+}
+
+.margen_abj
+
+{
+
+  border-bottom: 1px solid #DAD9C7;
+
+}
+
+.margen_der_abj{
+
+ border-right: 1px solid #DAD9C7;
+
+ border-bottom: 1px solid #DAD9C7;
+
+}
+
+
+.margen_der_abj_1{
+
+ border-right: 1px solid #DAD9C7;
+
+ border-bottom: 1px solid #DAD9C7;
+
+
+}
+
+
+
+
+
+.boton_fecha
+
+{
+
+ margin-right:160px;
+
+}
+
+.der{
+
+ text-align:right;
+
+}
+
+.datos_cli
+
+{
+
+ margin-top:5px;
+
+}
+.pequenio
+{
+ width:40px;
+}
+
+.error
+{
+  margin-right: 75px;
+  color:#F00;
+}
+
+.anhora
+{
+  width:64px;
+}
+.apuntar
+{
+  cursor:pointer; 
+  color:#09f;
+}
+.field_analisis
+{
+  margin: 10px auto;
+    width: 511px;
+}
+.red
+{
+  color: #F00;
+}
+
+.green
+{
+  color: #009300; 
+}
