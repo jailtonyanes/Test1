@@ -28,7 +28,7 @@ FROM
     INNER JOIN `novedad` 
         ON (`novedad`.`novedad_id` = `programacion`.`novedad_id`)
     INNER JOIN puesto ON (programacion.`puesto`=puesto.`puesto_id`) WHERE municipio.`municipio_id`='$_GET[uid2]' 
-    AND departamento.`departamento_id`='$_GET[uid1]'
+    AND departamento.`departamento_id`='$_GET[uid1]' and cliente.cliente_id='$_GET[uid]'
     GROUP BY sucursal.`sucursal_id`      
          ORDER BY sucursal.`sucursal_nombre` ASC ");
                $datos2= $crud2->seleccionar($con2->getConection()); 

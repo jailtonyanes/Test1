@@ -140,7 +140,7 @@ function sacar_suc_asoc()
 
      if($("#muni").val()!='')
     {
-        $("#sucur").load("saca_suc_asoc_prog.php?uid1="+$("#depar").val()+"&uid2="+$("#muni").val(),function(){
+        $("#sucur").load("saca_suc_asoc_prog.php?uid1="+$("#depar").val()+"&uid2="+$("#muni").val()+"&uid="+$("#cliente").val(),function(){
 		      $(this).fadeIn("medium");
         });
     }
